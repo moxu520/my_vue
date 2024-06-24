@@ -1,0 +1,31 @@
+<script>
+    let product = {
+        price:10,
+        quantity:1
+    }
+
+    let total = 0;
+    let effect = ()=>{
+        // 这里需要使用代理对象进行计算
+        total = proxyProduct.price * proxyProduct.quantity
+    }
+
+    // product => 被代理对象
+    // proxyProduct => 代理对象
+    let proxyProduct = new Proxy(product,{
+        //  target => 被代理对象
+        //  key => 键
+        //  receiver => 代理对象
+        get(target,key,receiver){
+            return product[key]
+        },
+        // target => 被代理对象
+        // key => 键
+        // newVal => 新的值
+        //  receiver => 代理对象
+        set(taget,key,newVal){
+            taget[key] = newVal;
+            effect()
+        }
+    }) 
+</script>
