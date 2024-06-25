@@ -1,0 +1,1 @@
+export const mutableHanlders: ProxyHandler<object> = {}
